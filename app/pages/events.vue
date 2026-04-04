@@ -110,24 +110,24 @@
       <div
         class="rounded-[2rem] border border-slate-200 bg-slate-50 p-10 shadow-sm"
       >
-        <div
-          class="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between"
-        >
-          <div class="max-w-2xl">
+        <div class="flex flex-col gap-10 lg:flex-row lg:items-start">
+          <div class="w-full lg:flex-[0.8] lg:min-w-0">
             <p
               class="text-sm font-semibold uppercase tracking-[0.3em] text-sky-600"
             >
               What to expect
             </p>
             <h2 class="mt-4 text-3xl font-bold text-slate-900">
-              A calendar built for leadership, service, and club connection.
+              A calendar made for leadership, service, and connection.
             </h2>
             <p class="mt-4 text-slate-600 leading-8">
-              Explore district-wide events designed to help officers grow,
-              members serve, and clubs collaborate with purpose.
+              Discover district events that help officers learn, members serve,
+              and clubs grow stronger together.
             </p>
           </div>
-          <div class="grid gap-4 sm:grid-cols-2 lg:w-[420px]">
+          <div
+            class="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:flex-1"
+          >
             <div class="rounded-3xl bg-white p-6 shadow-sm">
               <h3 class="font-semibold text-slate-900">Leadership</h3>
               <p class="mt-2 text-sm text-slate-600">
@@ -137,7 +137,13 @@
             <div class="rounded-3xl bg-white p-6 shadow-sm">
               <h3 class="font-semibold text-slate-900">Service</h3>
               <p class="mt-2 text-sm text-slate-600">
-                Community projects that make a real impact.
+                Community projects that strengthen local impact.
+              </p>
+            </div>
+            <div class="rounded-3xl bg-white p-6 shadow-sm">
+              <h3 class="font-semibold text-slate-900">Connection</h3>
+              <p class="mt-2 text-sm text-slate-600">
+                Networking and collaboration with other clubs and advisors.
               </p>
             </div>
           </div>
