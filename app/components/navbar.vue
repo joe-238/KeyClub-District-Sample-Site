@@ -1,15 +1,16 @@
 <template>
-  <nav class="bg-white shadow-sm px-6 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold text-blue-600">Key Club District</h1>
-
-    <!-- Nav links container must be relative -->
+  <nav class="bg-white px-6 py-4 flex items-center justify-between shadow-sm">
+    <img
+      src="/key_club_logo.png"
+      alt="Key Club District logo"
+      class="w-24 object-contain"
+    />
     <div
-      class="relative flex space-x-10 text-sm font-medium bg-gray-200 py-2 pr-7 rounded-full"
+      class="relative flex items-center space-x-8 rounded-full border border-slate-200 bg-slate-100 px-3 py-2 shadow-sm"
     >
-      <!-- Sliding pill -->
       <span
         ref="slider"
-        class="absolute bg-white rounded-full transition-all duration-300 ease-out z-0"
+        class="absolute left-0 top-0 z-0 rounded-full bg-white transition-all duration-300 ease-out"
         :style="pillStyle"
       ></span>
 
@@ -18,14 +19,18 @@
         v-for="(link, i) in links"
         :key="link.to"
         :to="link.to"
-        class="relative px-3 py-1 rounded-full z-10 hover:text-blue-500"
+        class="relative z-10 rounded-full px-4 py-2 text-sm font-semibold text-blue-500 transition hover:text-blue-600"
         :ref="(el) => setItemRef(i, el)"
       >
         {{ link.name }}
       </NuxtLink>
     </div>
 
-    <button class="px-4 py-2 bg-blue-500 text-white rounded">Contact Us</button>
+    <button
+      class="inline-flex items-center justify-center rounded-full border border-sky-200 bg-white px-5 py-2 text-sm font-semibold text-sky-600 shadow-sm shadow-slate-200 transition hover:border-sky-300 hover:bg-sky-50"
+    >
+      Contact Us
+    </button>
   </nav>
 </template>
 

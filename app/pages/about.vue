@@ -1,64 +1,177 @@
 <template>
-  <section class="min-h-screen bg-gray-50 py-20 px-6">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl font-bold text-blue-600 mb-6">About Our District</h1>
-      <p class="text-gray-700 mb-6">
-        Key Club is a student-led organization that empowers young people to
-        lead, serve, and make a difference in their communities. Our district
-        brings together clubs from across the region to collaborate on
-        meaningful service projects, leadership development, and friendship.
-      </p>
-      <img
-        src="/image.png"
-        alt="Key Club members"
-        class="w-full rounded-2xl shadow-lg object-cover"
-      />
+  <section class="min-h-screen bg-white py-20 px-6">
+    <div class="mx-auto max-w-6xl">
+      <div class="grid gap-10 lg:grid-cols-[1.4fr,0.8fr] lg:items-start">
+        <div class="space-y-10">
+          <div>
+            <p
+              class="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-sky-600"
+            >
+              About the district
+            </p>
+            <h1
+              class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl"
+            >
+              A focused district strategy for leadership, service, and impact.
+            </h1>
+            <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+              We bring clubs together around a clear mission: empower students
+              with the support, training, and service opportunities they need to
+              lead confidently and serve meaningfully.
+            </p>
+          </div>
 
-      <div class="mb-12 w-5/6">
-        <h2 class="text-2xl font-semibold mb-3">Reach out with us today</h2>
-
-        <div class="flex items-center justify-center">
           <div
-            v-for="(item, index) in info"
-            :key="index"
-            class="bg-white rounded-xl shadow-lg p-6 flex items-center flex-1 hover:shadow-2xl transition"
+            class="rounded-3xl border border-slate-200 bg-slate-50 p-10 shadow-sm"
           >
-            <div class="text-4xl mb-4">{{ item.icon }}</div>
-            <div class="flex flex-col">
-              <h3 class="font-semibold text-lg mb-1">{{ item.title }}</h3>
-              <span class="text-gray-600 text-sm text-center">{{
-                item.content
-              }}</span>
-            </div>
+            <p
+              class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500"
+            >
+              What we prioritize
+            </p>
+            <h2 class="mt-4 text-3xl font-bold text-slate-900">
+              One strong focus, one shared direction.
+            </h2>
+            <p class="mt-6 text-slate-600 leading-8">
+              Our district works with clubs, advisors, and community partners to
+              make sure every initiative is purposeful, every leader is
+              supported, and every service project creates real value.
+            </p>
+            <ul class="mt-8 space-y-4 text-slate-600">
+              <li class="flex gap-3">
+                <span
+                  class="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-sky-600"
+                ></span>
+                Clear leadership development for every member.
+              </li>
+              <li class="flex gap-3">
+                <span
+                  class="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-sky-600"
+                ></span>
+                Project planning that matches local needs and student passion.
+              </li>
+              <li class="flex gap-3">
+                <span
+                  class="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-sky-600"
+                ></span>
+                Better communication across clubs, advisors, and district
+                leadership.
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="rounded-3xl border border-slate-200 bg-white p-10 shadow-sm"
+          >
+            <p
+              class="text-sm font-semibold uppercase tracking-[0.3em] text-sky-600"
+            >
+              Our mission
+            </p>
+            <h2 class="mt-4 text-3xl font-bold text-slate-900">
+              Empower student leaders through purposeful service.
+            </h2>
+            <p class="mt-6 text-slate-600 leading-8">
+              We support clubs with mentorship, training, and district-wide
+              collaboration so students can build confidence, develop character,
+              and make a measurable difference in their communities.
+            </p>
           </div>
         </div>
+
+        <aside class="space-y-8">
+          <div
+            class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
+          >
+            <p
+              class="text-sm font-semibold uppercase tracking-[0.3em] text-sky-600"
+            >
+              Quick overview
+            </p>
+            <div class="mt-6 space-y-4 text-slate-600">
+              <div>
+                <p class="font-semibold text-slate-900">District coverage</p>
+                <p class="mt-1 text-sm">
+                  Serving clubs across the region with coordinated support.
+                </p>
+              </div>
+              <div>
+                <p class="font-semibold text-slate-900">Primary goal</p>
+                <p class="mt-1 text-sm">
+                  Create consistent leadership growth and meaningful community
+                  service.
+                </p>
+              </div>
+              <div>
+                <p class="font-semibold text-slate-900">Why it matters</p>
+                <p class="mt-1 text-sm">
+                  Every student should have the tools to lead, serve, and
+                  succeed.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm"
+          >
+            <p
+              class="text-sm font-semibold uppercase tracking-[0.3em] text-sky-600"
+            >
+              Contact
+            </p>
+            <h3 class="mt-4 text-2xl font-bold text-slate-900">
+              Reach our district team
+            </h3>
+            <p class="mt-4 text-slate-600">
+              If you have questions about membership, events, or service
+              projects, we’re here to help.
+            </p>
+            <div class="mt-8 space-y-4">
+              <div
+                v-for="(item, index) in info"
+                :key="index"
+                class="rounded-3xl border border-slate-200 bg-slate-50 p-5"
+              >
+                <p class="font-semibold text-slate-900">{{ item.title }}</p>
+                <p class="mt-2 text-sm text-slate-600">{{ item.content }}</p>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="rounded-3xl border border-slate-200 bg-slate-50 p-8 text-center shadow-sm"
+          >
+            <p
+              class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500"
+            >
+              Core values
+            </p>
+            <p class="mt-4 text-lg font-semibold text-slate-900">
+              Leadership, service, and fellowship with integrity.
+            </p>
+          </div>
+        </aside>
       </div>
 
-      <div class="mb-12">
-        <h2 class="text-2xl font-semibold mb-3">Our Mission</h2>
-        <p class="text-gray-600">
-          To develop leadership skills, foster a spirit of service, and create
-          positive change for communities both locally and globally.
+      <div
+        class="rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm"
+      >
+        <p
+          class="text-sm font-semibold uppercase tracking-[0.3em] text-sky-600"
+        >
+          Ready to get involved?
         </p>
-      </div>
-
-      <!-- Values Section -->
-      <div class="mb-12">
-        <h2 class="text-2xl font-semibold mb-3">Our Core Values</h2>
-        <ul class="text-gray-600 list-disc list-inside space-y-2">
-          <li>Leadership: Encouraging students to take initiative</li>
-          <li>Service: Making a meaningful impact in communities</li>
-          <li>Fellowship: Building lasting friendships and collaboration</li>
-          <li>Character: Acting with integrity and responsibility</li>
-        </ul>
-      </div>
-
-      <!-- Call to Action -->
-      <div>
-        <p class="text-gray-700 mb-4">Want to get involved or learn more?</p>
+        <h2 class="mt-4 text-3xl font-bold text-slate-900">
+          Join the district movement.
+        </h2>
+        <p class="mt-4 text-slate-600">
+          Discover the support and service opportunities available to your club
+          and members.
+        </p>
         <NuxtLink
           to="/"
-          class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+          class="mt-8 inline-flex rounded-full bg-sky-600 px-8 py-3 text-base font-semibold text-white shadow-lg shadow-sky-200 transition hover:bg-sky-700"
         >
           Back to Home
         </NuxtLink>
