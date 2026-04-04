@@ -19,7 +19,7 @@
         v-for="(link, i) in links"
         :key="link.to"
         :to="link.to"
-        class="relative z-10 rounded-full px-4 py-2 text-sm font-semibold text-blue-500 transition hover:text-blue-600"
+        class="relative z-10 rounded-full px-4 py-1 text-sm font-semibold text-blue-500 transition hover:text-blue-600"
         :ref="(el) => setItemRef(i, el)"
       >
         {{ link.name }}

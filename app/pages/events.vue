@@ -1,41 +1,108 @@
 <template>
   <section class="min-h-screen bg-white">
     <div class="relative overflow-hidden h-[65vh]">
-      <img
-        src="/image.png"
-        alt="Key Club event"
-        class="h-[65vh] absolute w-full object-cover brightness-75"
-      />
+      <Transition name="bg-fade" mode="out-in">
+        <img
+          :key="currentFeaturedIndex"
+          :src="currentFeatured.image"
+          alt="Key Club event"
+          class="h-[65vh] absolute w-full object-cover brightness-75"
+        />
+      </Transition>
       <div class="relative mx-auto flex h-[56vh] max-w-7xl items-center px-6">
-        <div class="max-w-3xl text-white">
-          <span
-            class="inline-flex rounded-full bg-sky-500/20 px-3 py-1 text-sm font-semibold tracking-[0.3em] text-sky-200"
+        <Transition name="slide-fade" mode="out-in">
+          <div
+            :key="currentFeaturedIndex"
+            :class="['max-w-3xl text-white', directionClass]"
           >
-            Upcoming events
-          </span>
-          <h1 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-            Join Key Club gatherings that develop leaders and serve our
-            communities.
-          </h1>
-          <p class="mt-6 max-w-xl text-lg leading-8 text-slate-200">
-            Discover a full calendar of district events built around service,
-            fellowship, and leadership growth for clubs across the region.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-4">
-            <NuxtLink
-              to="/about"
-              class="inline-flex rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/20 transition hover:bg-sky-400"
+            <span
+              class="inline-flex rounded-full bg-sky-500/20 px-3 py-1 text-sm font-semibold tracking-[0.3em] text-sky-200"
             >
-              Learn More
-            </NuxtLink>
-            <NuxtLink
-              to="/"
-              class="inline-flex rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
-            >
-              Back to Home
-            </NuxtLink>
+              {{ currentFeatured.badge }}
+            </span>
+            <h1 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+              {{ currentFeatured.title }}
+            </h1>
+            <p class="mt-6 max-w-xl text-lg leading-8 text-slate-200">
+              {{ currentFeatured.description }}
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <NuxtLink
+                to="/about"
+                class="inline-flex rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/20 transition hover:bg-sky-400"
+              >
+                Learn More
+              </NuxtLink>
+              <NuxtLink
+                to="/"
+                class="inline-flex rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
+              >
+                Back to Home
+              </NuxtLink>
+            </div>
           </div>
+        </Transition>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div
+        class="absolute bottom-6 left-0 right-0 flex items-center justify-center gap-4"
+      >
+        <button
+          @click="prevFeatured"
+          class="rounded-full bg-white/20 p-2 text-white transition hover:bg-white/30"
+          aria-label="Previous featured"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            ></path>
+          </svg>
+        </button>
+
+        <!-- Dot Indicators -->
+        <div class="flex gap-2">
+          <button
+            v-for="(item, index) in featured"
+            :key="item.id"
+            @click="goToFeatured(index)"
+            :class="[
+              'h-2 rounded-full transition-all duration-300',
+              currentFeaturedIndex === index
+                ? 'w-8 bg-white'
+                : 'w-2 bg-white/50 hover:bg-white/75',
+            ]"
+            :aria-label="`Go to featured item ${index + 1}`"
+          ></button>
         </div>
+
+        <button
+          @click="nextFeatured"
+          class="rounded-full bg-white/20 p-2 text-white transition hover:bg-white/30"
+          aria-label="Next featured"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -168,7 +235,7 @@
             <div
               v-for="event in events"
               :key="event.id"
-              class="rounded-3xl border border-slate-200 bg-white p-6 transition hover:border-sky-300 hover:shadow-md"
+              class="fade-in rounded-3xl border border-slate-200 bg-white p-6 transition hover:border-sky-300 hover:shadow-md"
             >
               <div class="flex items-start justify-between gap-4">
                 <div>
@@ -232,6 +299,110 @@ const events = [
     location: "Camp Lakeview",
   },
 ];
+
+const featured = [
+  {
+    id: 1,
+    badge: "Upcoming events",
+    title:
+      "Join Key Club gatherings that develop leaders and serve our communities.",
+    description:
+      "Discover a full calendar of district events built around service, fellowship, and leadership growth for clubs across the region.",
+    image: "/image.png",
+  },
+  {
+    id: 2,
+    badge: "Featured Event",
+    title: "Leadership Summit 2025 - Transform Your Club.",
+    description:
+      "Join us for an intensive leadership development program designed to equip club officers with the skills and strategies needed to make a real impact.",
+    image: "/image.png",
+  },
+  {
+    id: 3,
+    badge: "Special Initiative",
+    title: "Service Excellence Across Districts.",
+    description:
+      "Participate in our district-wide service initiative connecting clubs and amplifying the reach of Key Club's mission in the community.",
+    image: "/image.png",
+  },
+];
+
+const currentFeaturedIndex = ref(0);
+const direction = ref(0);
+
+const currentFeatured = computed(() => featured[currentFeaturedIndex.value]);
+
+const directionClass = computed(() => {
+  return direction.value === 1 ? "slide-right" : "slide-left";
+});
+
+const nextFeatured = () => {
+  direction.value = 1;
+  currentFeaturedIndex.value =
+    (currentFeaturedIndex.value + 1) % featured.length;
+};
+
+const prevFeatured = () => {
+  direction.value = -1;
+  currentFeaturedIndex.value =
+    (currentFeaturedIndex.value - 1 + featured.length) % featured.length;
+};
+
+const goToFeatured = (index) => {
+  direction.value = index > currentFeaturedIndex.value ? 1 : -1;
+  currentFeaturedIndex.value = index;
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+/* Sliding animations for featured section */
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Right slide (next button) */
+.slide-right.slide-fade-enter-from {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-right.slide-fade-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+/* Left slide (prev button) */
+.slide-left.slide-fade-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slide-left.slide-fade-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-fade-enter-to,
+.slide-fade-leave-from {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Fade in animations for event cards */
+.fade-in {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
