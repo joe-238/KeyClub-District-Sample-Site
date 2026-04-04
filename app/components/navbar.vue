@@ -35,9 +35,6 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, nextTick } from "vue";
-import { useRoute } from "vue-router";
-
 const links = [
   { name: "Home", to: "/" },
   { name: "About", to: "/about" },
@@ -45,7 +42,6 @@ const links = [
   { name: "Resources", to: "/resources" },
 ];
 
-const slider = ref(null);
 const items = ref([]);
 const pillStyle = ref({
   width: "60px",

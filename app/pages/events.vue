@@ -276,7 +276,6 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
 const events = [
   {
     id: 1,
@@ -315,7 +314,8 @@ const featured = [
       "Join Key Club gatherings that develop leaders and serve our communities.",
     description:
       "Discover a full calendar of district events built around service, fellowship, and leadership growth for clubs across the region.",
-    image: "/image.png",
+    image:
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&h=800&fit=crop",
   },
   {
     id: 2,
@@ -323,7 +323,8 @@ const featured = [
     title: "Leadership Summit 2025 - Transform Your Club.",
     description:
       "Join us for an intensive leadership development program designed to equip club officers with the skills and strategies needed to make a real impact.",
-    image: "/image.png",
+    image:
+      "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=1600&h=800&fit=crop",
   },
   {
     id: 3,
@@ -331,7 +332,8 @@ const featured = [
     title: "Service Excellence Across Districts.",
     description:
       "Participate in our district-wide service initiative connecting clubs and amplifying the reach of Key Club's mission in the community.",
-    image: "/image.png",
+    image:
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&h=800&fit=crop",
   },
 ];
 
