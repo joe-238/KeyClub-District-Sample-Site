@@ -10,11 +10,11 @@
         />
       </Transition>
       <div class="relative mx-auto flex h-[56vh] max-w-7xl items-center px-6">
-        <Transition name="slide-fade" mode="out-in">
-          <div
-            :key="currentFeaturedIndex"
-            :class="['max-w-3xl text-white', directionClass]"
-          >
+        <Transition
+          :name="direction > 0 ? 'slide-right' : 'slide-left'"
+          mode="out-in"
+        >
+          <div :key="currentFeaturedIndex" class="max-w-3xl text-white">
             <span
               class="inline-flex rounded-full bg-sky-500/20 px-3 py-1 text-sm font-semibold tracking-[0.3em] text-sky-200"
             >
@@ -270,6 +270,7 @@
 </template>
 
 <script setup>
+import { ref, computed } from "vue";
 const events = [
   {
     id: 1,
@@ -329,13 +330,9 @@ const featured = [
 ];
 
 const currentFeaturedIndex = ref(0);
-const direction = ref(0);
+const direction = ref(1);
 
 const currentFeatured = computed(() => featured[currentFeaturedIndex.value]);
-
-const directionClass = computed(() => {
-  return direction.value === 1 ? "slide-right" : "slide-left";
-});
 
 const nextFeatured = () => {
   direction.value = 1;
@@ -356,41 +353,38 @@ const goToFeatured = (index) => {
 </script>
 
 <style scoped>
-/* Sliding animations for featured section */
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition:
+    transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.35s ease;
 }
 
-/* Right slide (next button) */
-.slide-right.slide-fade-enter-from {
+.slide-right-enter-from {
   transform: translateX(100%);
   opacity: 0;
 }
-
-.slide-right.slide-fade-leave-to {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-/* Left slide (prev button) */
-.slide-left.slide-fade-enter-from {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-.slide-left.slide-fade-leave-to {
-  transform: translateX(100%);
-  opacity: 0;
-}
-
-.slide-fade-enter-to,
-.slide-fade-leave-from {
+.slide-right-enter-to,
+.slide-left-enter-to,
+.slide-right-leave-from,
+.slide-left-leave-from {
   transform: translateX(0);
   opacity: 1;
 }
-
-/* Fade in animations for event cards */
+.slide-right-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.slide-left-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.slide-left-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
 .fade-in {
   animation: fadeInUp 0.6s ease-out;
 }
