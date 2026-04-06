@@ -67,33 +67,26 @@
             </button>
           </form>
         </div>
-        <div class="bg-slate-50 shadow-lg rounded-2xl p-6 md:p-8">
-          <h2 class="text-2xl font-semibold mb-6">
-            Key Club Contact Information
+        <div class="bg-slate-50 shadow-lg rounded-2xl p-6 md:p-8 flex flex-col">
+          <h2 class="text-2xl font-semibold mb-4 text-center md:text-left">
+            Key Club District Locations
           </h2>
-
-          <div class="space-y-4 mb-6 text-gray-700">
-            <p>
-              <span class="font-medium"> Phone: </span>
-              (123) 456-7890
-            </p>
-
-            <p>
-              <span class="font-medium"> Email: </span>
-              keyclub@nydkc.com
-            </p>
-          </div>
+          <p class="text-slate-600 mb-4 text-center md:text-left">
+            Find our clubs and district offices on the map below. Click and
+            explore for more details.
+          </p>
 
           <!-- Google Map -->
-          <div class="w-full h-[300px] md:h-[350px] rounded-xl overflow-hidden">
+          <div
+            class="w-full h-[300px] md:h-[400px] rounded-xl overflow-hidden border border-slate-200"
+          >
             <iframe
-              class="w-full h-full border-0"
+              class="w-full h-full"
               loading="lazy"
               allowfullscreen
               referrerpolicy="no-referrer-when-downgrade"
               src="https://www.google.com/maps/d/embed?mid=1vXC4_twuPi5LL9RT6gOM_SlQDJmFKs1l&ehbc=2E312F"
-            >
-            </iframe>
+            ></iframe>
           </div>
         </div>
       </div>

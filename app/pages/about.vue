@@ -138,24 +138,11 @@
               </div>
             </div>
           </div>
-
-          <div
-            class="rounded-3xl border border-slate-200 bg-slate-50 p-8 text-center shadow-sm"
-          >
-            <p
-              class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500"
-            >
-              Core values
-            </p>
-            <p class="mt-4 text-lg font-semibold text-slate-900">
-              Leadership, service, and fellowship with integrity.
-            </p>
-          </div>
         </aside>
       </div>
 
       <div
-        class="rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm"
+        class="rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-sm mt-10"
       >
         <p
           class="text-sm font-semibold uppercase tracking-[0.3em] text-sky-600"
@@ -185,7 +172,7 @@ const info = [
   {
     icon: "📧",
     title: "Email",
-    content: "closeify1@gmail.com",
+    content: "keyclub@nydkc.com",
   },
   {
     icon: "📞",
