@@ -1,12 +1,17 @@
 <template>
-  <nav class="bg-white px-6 py-4 flex items-center justify-between shadow-sm">
+  <nav
+    class="bg-white px-4 md:px-6 py-4 flex items-center justify-between shadow-sm relative"
+  >
+    <!-- Logo -->
     <img
       src="/key_club_logo.png"
       alt="Key Club District logo"
-      class="w-24 object-contain"
+      class="w-16 md:w-20 lg:w-24 object-contain"
     />
+
+    <!-- Desktop Navigation -->
     <div
-      class="relative flex items-center space-x-8 rounded-full border border-slate-200 bg-slate-100 px-3 py-2 shadow-sm"
+      class="hidden md:flex relative items-center space-x-6 lg:space-x-8 rounded-full border border-slate-200 bg-slate-100 px-3 py-2 shadow-sm"
     >
       <span
         ref="slider"
@@ -26,15 +31,52 @@
       </NuxtLink>
     </div>
 
-    <button
-      class="inline-flex items-center justify-center rounded-full border border-sky-200 bg-white px-5 py-2 text-sm font-semibold text-sky-600 shadow-sm shadow-slate-200 transition hover:border-sky-300 hover:bg-sky-50"
+    <!-- Desktop Contact Button -->
+    <NuxtLink
+      to="/contact"
+      class="hidden md:inline-flex items-center justify-center rounded-full border border-sky-200 bg-white px-5 py-2 text-sm font-semibold text-sky-600 shadow-sm shadow-slate-200 transition hover:border-sky-300 hover:bg-sky-50"
     >
       Contact Us
+    </NuxtLink>
+
+    <!-- Mobile Menu Button -->
+    <button
+      @click="toggleMenu"
+      class="md:hidden text-blue-500 focus:outline-none"
+    >
+      ☰
     </button>
+
+    <!-- Mobile Menu -->
+    <div
+      v-if="menuOpen"
+      class="absolute top-full left-0 w-full bg-white shadow-md md:hidden flex flex-col items-center space-y-4 py-6 z-50"
+    >
+      <NuxtLink
+        v-for="(link, i) in links"
+        :key="link.to"
+        :to="link.to"
+        class="text-blue-500 font-semibold text-lg"
+        @click="menuOpen = false"
+      >
+        {{ link.name }}
+      </NuxtLink>
+
+      <NuxtLink
+        to="/contact"
+        class="rounded-full border border-sky-200 bg-white px-5 py-2 text-sm font-semibold text-sky-600 shadow-sm transition hover:border-sky-300 hover:bg-sky-50"
+        @click="menuOpen = false"
+      >
+        Contact Us
+      </NuxtLink>
+    </div>
   </nav>
 </template>
 
 <script setup>
+import { ref, nextTick, onMounted, watch } from "vue";
+import { useRoute } from "#app";
+
 const links = [
   { name: "Home", to: "/" },
   { name: "About", to: "/about" },
@@ -50,6 +92,12 @@ const pillStyle = ref({
 
 const route = useRoute();
 
+const menuOpen = ref(false);
+
+const toggleMenu = () => {
+  menuOpen.value = !menuOpen.value;
+};
+
 const setItemRef = (index, el) => {
   if (el) {
     items.value[index] = el.$el || el;
@@ -58,13 +106,17 @@ const setItemRef = (index, el) => {
 
 const updatePill = async () => {
   await nextTick();
+
   const index = links.findIndex((l) => l.to === route.path);
+
   if (index === -1) return;
 
   const el = items.value[index];
+
   if (!el) return;
 
   const parentEl = el.parentElement;
+
   const topOffset = (parentEl.offsetHeight - el.offsetHeight) / 2;
 
   pillStyle.value = {
@@ -78,10 +130,11 @@ const updatePill = async () => {
 onMounted(() => {
   setTimeout(updatePill, 100);
 });
+
 watch(
   () => route.path,
   () => {
     setTimeout(updatePill, 50);
-  },
+  }
 );
 </script>
